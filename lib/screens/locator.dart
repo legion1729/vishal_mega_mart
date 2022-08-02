@@ -3,6 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:vishal_mega_mart_app/screens/categoryss.dart';
+import 'package:vishal_mega_mart_app/screens/home.dart';
 import 'dart:async';
 
 import 'package:vishal_mega_mart_app/screens/homePage.dart';
@@ -136,11 +138,11 @@ class _CurrentLocationState extends State<CurrentLocation> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const HomePage(),
+              builder: (context) => Home(),
             ),
           );
         }),
-         child: const Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

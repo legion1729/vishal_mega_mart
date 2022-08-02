@@ -8,7 +8,7 @@ class CategoriesItem extends StatelessWidget {
   final double height;
   final double width;
 
-  const CategoriesItem({
+   CategoriesItem({
     Key? key,
     this.image,
     this.categoryName = '',
