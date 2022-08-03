@@ -15,15 +15,15 @@ class MovieList extends StatelessWidget {
         stream: bloc.allcategory,
         builder: (context, AsyncSnapshot<CategorySection> snapshot) {
           if (snapshot.hasData) {
-            return  ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-      itemCount: 9,
-      itemBuilder: (BuildContext context, int index) =>  CategoriesItem(
-        categoryName: snapshot.data?.description?.descriptionDefault,
-        image: snapshot.data?.categories?[index].thumbnail,
-      ),
-    );;
+            return ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: 9,
+              itemBuilder: (BuildContext context, int index) => CategoriesItem(
+                categoryName: snapshot.data?.description?.descriptionDefault,
+                image: snapshot.data?.categories?[index].thumbnail,
+              ),
+            );
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
@@ -32,6 +32,4 @@ class MovieList extends StatelessWidget {
       ),
     );
   }
-
- 
 }
