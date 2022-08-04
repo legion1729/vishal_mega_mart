@@ -20,7 +20,7 @@ class MovieList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 9,
               itemBuilder: (BuildContext context, int index) => CategoriesItem(
-                categoryName: snapshot.data?.description?.descriptionDefault,
+                categoryName: snapshot.data!.categories![index].name!.descriptionDefault,
                 image: snapshot.data?.categories?[index].thumbnail,
               ),
             );

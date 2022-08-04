@@ -39,22 +39,24 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchallcategory();
+     bloc.fetchallcategory();
+    
+    
     return Scaffold(
-      appBar: AppBar(
-        // shape: const RoundedRectangleBorder(
-        //   borderRadius: BorderRadius.only(
-        //     bottomRight: Radius.circular(70),
-        //     bottomLeft: Radius.circular(70),
-        //   ),
-        // ),
-        title: const Center(
-          child: Text(
-            "Vishal mega mart",
-          ),
-        ),
-        backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
-      ),
+      // appBar: AppBar(
+      //   // shape: const RoundedRectangleBorder(
+      //   //   borderRadius: BorderRadius.only(
+      //   //     bottomRight: Radius.circular(70),
+      //   //     bottomLeft: Radius.circular(70),
+      //   //   ),
+      //   // ),
+      //   title: const Center(
+      //     child: Text(
+      //       "Vishal mega mart",
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
+      // ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -72,14 +74,14 @@ class _HomeState extends State<Home> {
                   hintText: 'Enter a search term',
                 ),
               ),
-              FloatingActionButton(
-                onPressed: () {
-                  {
-                    log("++++ BUTTON CLICKED ++++++");
-                  }
-                  ;
-                },
-              ),
+              // FloatingActionButton(
+              //   onPressed: () {
+              //     {
+              //       log("++++ BUTTON CLICKED ++++++");
+              //     }
+              //     ;
+              //   },
+              // ),
               const SizedBox(height: 10),
               const SizedBox(height: 15),
               const Align(
@@ -93,38 +95,36 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 10),
-          //     Container(
-          //       //decoration: BoxDecoration(color: Colors.red[100]),
-          //       height: 130,
-          //       child: StreamBuilder(
-          //           stream: bloc.allcategory,
-          //           builder:
-          //               (context, AsyncSnapshot<CategorySection> snapshot) {
-          //                 if (snapshot.hasData) {
-          //   return Text("====================");
-          // } else if (snapshot.hasError) {
-          //   return Text(snapshot.error.toString());
-          // }
-          // return Center(child: CircularProgressIndicator());
-                     
-          //           }),
-          //     ),
-              Container(
-                height: 130,
-                child: MovieList()
-                // buildList(AsyncSnapshot<>)
-                // child:   ListView.builder(
-                //         shrinkWrap: true,
-                //         scrollDirection: Axis.horizontal,
-                //         itemCount: 5,
-                //         itemBuilder: (BuildContext context, int index) =>
-                //             const CategoriesItem(
-                //           categoryName: "aaaaa",
-                //           image: "",
-                //         ),
-                //       ),
-                // 
-                ),
+              //     Container(
+              //       //decoration: BoxDecoration(color: Colors.red[100]),
+              //       height: 130,
+              //       child: StreamBuilder(
+              //           stream: bloc.allcategory,
+              //           builder:
+              //               (context, AsyncSnapshot<CategorySection> snapshot) {
+              //                 if (snapshot.hasData) {
+              //   return Text("====================");
+              // } else if (snapshot.hasError) {
+              //   return Text(snapshot.error.toString());
+              // }
+              // return Center(child: CircularProgressIndicator());
+
+              //           }),
+              //     ),
+              Container(height: 150, child: MovieList()
+                  // buildList(AsyncSnapshot<>)
+                  // child:   ListView.builder(
+                  //         shrinkWrap: true,
+                  //         scrollDirection: Axis.horizontal,
+                  //         itemCount: 5,
+                  //         itemBuilder: (BuildContext context, int index) =>
+                  //             const CategoriesItem(
+                  //           categoryName: "aaaaa",
+                  //           image: "",
+                  //         ),
+                  //       ),
+                  //
+                  ),
               const SizedBox(height: 15),
               const Align(
                 alignment: Alignment.centerLeft,

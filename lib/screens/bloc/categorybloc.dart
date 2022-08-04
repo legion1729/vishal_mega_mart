@@ -18,6 +18,7 @@ class CategoryBloc {
   dispose() {
     _categoryfetcher.close();
   }
+
 }
 
 final bloc = CategoryBloc();

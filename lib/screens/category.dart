@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_mega_mart_app/screens/productDetails.dart';
+import 'package:vishal_mega_mart_app/screens/subcat.dart';
 
 class CategoriesItem extends StatelessWidget {
   final String? image;
@@ -8,7 +9,7 @@ class CategoriesItem extends StatelessWidget {
   final double height;
   final double width;
 
-   CategoriesItem({
+  CategoriesItem({
     Key? key,
     this.image,
     this.categoryName = '',
@@ -24,7 +25,7 @@ class CategoriesItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ProductDetails(),
+            builder: (context) => SubcatScreen(),
           ),
         );
       },
@@ -32,14 +33,14 @@ class CategoriesItem extends StatelessWidget {
         width: 100,
         padding: const EdgeInsets.only(
           right: 1,
-          // left: 5,
+          left: 5,
         ),
         child: Column(
           children: [
             Container(
               height: height,
               width: width,
-              margin: const EdgeInsetsDirectional.only(end: 2, start: 3),
+              margin: const EdgeInsetsDirectional.only(end: 4, start: 3),
               decoration: BoxDecoration(
                 color: color,
                 borderRadius: BorderRadius.circular(50),

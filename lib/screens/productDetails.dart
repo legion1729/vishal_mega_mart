@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:vishal_mega_mart_app/screens/bloc/productbloc.dart';
+import 'package:vishal_mega_mart_app/screens/productdetailsapipage.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
+    bloc.fetchallproduct();
     return Scaffold(
       appBar: AppBar(
         shape: const RoundedRectangleBorder(
@@ -29,55 +32,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         scrollDirection: Axis.vertical,
         child: SizedBox(
           height: 1700,
-          child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemCount: 12,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  //color: Colors.lightBlueAccent,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Image.asset(
-                          "assets/thor.jpg",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Brink",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Solid Polo Shirt",
-                          style: TextStyle(fontSize: 20, color: Colors.grey),
-                        ),
-                      ),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "\$ 229.00",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+          child:MovieListss()
         ),
       ),
     );
