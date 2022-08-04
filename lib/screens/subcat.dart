@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:vishal_mega_mart_app/screens/bloc/subcatbloc.dart';
 import 'package:vishal_mega_mart_app/screens/model/subcatmodel.dart';
@@ -13,21 +8,30 @@ class SubcatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc.fetchallSubcategory();
     return Scaffold(
-      body: StreamBuilder(
-        stream: bloc.allsubcategory,
-        builder: (context, AsyncSnapshot<SubCatModel> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: 9,
-              itemBuilder: (BuildContext context, int index) =>SubCat(text: "sometext")
-            );
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return Center(child: CircularProgressIndicator());
-        },
+      backgroundColor: Color.fromARGB(255, 204, 246, 255),
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.only(left: 40),
+          child: StreamBuilder(
+            stream: bloc.allsubcategory,
+            builder: (context, AsyncSnapshot<SubCatModel> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: 6,
+                    itemBuilder: (BuildContext context, int index) => SubCat(
+                        image:
+                            snapshot.data!.categories![index].thumbnail.toString(),
+                        text: snapshot.data!.categories![index].name!.nameDefault
+                            .toString()));
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              }
+              return Center(child: CircularProgressIndicator());
+            },
+          ),
+        ),
       ),
     );
   }
