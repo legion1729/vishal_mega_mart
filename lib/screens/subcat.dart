@@ -8,7 +8,10 @@ class SubcatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc.fetchallSubcategory();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 204, 246, 255),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      // backgroundColor: Color.fromARGB(255, 204, 246, 255),
       body: Center(
         child: Container(
           margin: EdgeInsets.only(left: 40),
@@ -21,9 +24,10 @@ class SubcatScreen extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) => SubCat(
-                        image:
-                            snapshot.data!.categories![index].thumbnail.toString(),
-                        text: snapshot.data!.categories![index].name!.nameDefault
+                        image: snapshot.data!.categories![index].thumbnail
+                            .toString(),
+                        text: snapshot
+                            .data!.categories![index].name!.nameDefault
                             .toString()));
               } else if (snapshot.hasError) {
                 return Text(snapshot.error.toString());

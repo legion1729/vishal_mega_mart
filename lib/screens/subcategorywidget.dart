@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:vishal_mega_mart_app/screens/lastpagescreen.dart';
 import 'package:vishal_mega_mart_app/screens/productDetails.dart';
 
 class SubCat extends StatelessWidget {
   final String text;
   final String image;
 
-  SubCat({required this.image,required this.text});
+  SubCat({required this.image, required this.text});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,24 +15,34 @@ class SubCat extends StatelessWidget {
       child: Center(
           child: Row(
         children: [
-           ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: image != null && image.isNotEmpty
-                    ? Image.network(
-                        image,
-                        fit: BoxFit.contain,
-                      )
-                    : Image.asset("assets/p.jpeg"),
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: image != null && image.isNotEmpty
+                ? Image.network(
+                    image,
+                    fit: BoxFit.contain,
+                  )
+                : Image.asset("assets/p.jpeg"),
+          ),
           RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LastPage(),
+                ),
+              );
+            },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(80.0)),
             padding: EdgeInsets.all(0.0),
             child: Ink(
               decoration: BoxDecoration(
-                  gradient:const LinearGradient(
-                    colors: [Color.fromARGB(255, 235, 120, 178), Color.fromARGB(255, 166, 110, 152)],
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 235, 120, 178),
+                      Color.fromARGB(255, 166, 110, 152)
+                    ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),

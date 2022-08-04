@@ -43,20 +43,21 @@ class _HomeState extends State<Home> {
     
     
     return Scaffold(
-      // appBar: AppBar(
-      //   // shape: const RoundedRectangleBorder(
-      //   //   borderRadius: BorderRadius.only(
-      //   //     bottomRight: Radius.circular(70),
-      //   //     bottomLeft: Radius.circular(70),
-      //   //   ),
-      //   // ),
-      //   title: const Center(
-      //     child: Text(
-      //       "Vishal mega mart",
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
-      // ),
+      appBar: AppBar(
+        
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(70),
+            bottomLeft: Radius.circular(70),
+          ),
+        ),
+        title: const Center(
+          child: Text(
+            "Vishal mega mart",
+          ),
+        ),
+        backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
