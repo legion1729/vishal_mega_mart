@@ -1,4 +1,4 @@
-#Thu Aug 04 13:09:23 IST 2022
+#Fri Aug 05 14:58:17 IST 2022
 base.0=/home/legion/Work/Flutter/vishal_mega_mart/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

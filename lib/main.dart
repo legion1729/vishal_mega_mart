@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vishal_mega_mart_app/screens/home.dart';
 import 'package:vishal_mega_mart_app/screens/locator.dart';
 
 void main() => runApp(const MyApp());
@@ -29,7 +30,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: CurrentLocation(),
+      body: Home(),
     );
   }
 }

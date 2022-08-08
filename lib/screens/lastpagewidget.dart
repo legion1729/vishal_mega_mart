@@ -30,6 +30,7 @@ class Commonwidget extends StatelessWidget {
             height: 20,
           ),
           Text(discription),
+          
         ],
       ),
     );
