@@ -8,8 +8,7 @@ import '../model/category_section.dart';
 class ProductlistyProvider {
   Client client = Client();
   Future<ProductListModel> getallproductlist() async {
-    const url =
-        "https://www.vishalmegamart.com/dw/shop/v20_10/product_search?refine_2=cgid=1008&refine_1=price=(0.01..99999)&start=0&count=25&inventory_ids=HH15_Inventory&expand=images&client_id=9804f8b4-e431-4950-a743-bda22f09ebb8&storeID=HH15&locale=en-IN";
+    const url ="https://www.vishalmegamart.com/dw/shop/v20_10/product_search?refine_2=cgid=1003001&refine_1=price=(0.01..99999)&start=0&count=25&inventory_ids=HH15_Inventory&expand=images&client_id=9804f8b4-e431-4950-a743-bda22f09ebb8&storeID=HH15&locale=en-IN";
     const token = tokens.TOKEN;
     var response = await client.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',

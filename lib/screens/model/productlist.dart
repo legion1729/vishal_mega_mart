@@ -76,13 +76,12 @@ class Hit {
   Hit({
     this.type,
     this.hitType,
+    this.image,
     this.link,
     this.productId,
     this.productName,
     this.productType,
     this.representedProduct,
-    this.cDefaultVariant,
-    this.cVariants,
     this.cAvailability,
     this.cBrand,
     this.cVmmProductType,
@@ -92,73 +91,65 @@ class Hit {
     this.cListprice,
     this.cSaleprice,
     this.cDiscount,
-    this.image,
   });
 
   HitType? type;
   HitTypeEnum? hitType;
+  Image? image;
   String? link;
   String? productId;
   String? productName;
   ProductType? productType;
   RepresentedProduct? representedProduct;
-  Variant? cDefaultVariant;
-  List<Variant>? cVariants;
   CAvailability? cAvailability;
-  String? cBrand;
-  VmmProductType? cVmmProductType;
+  CBrand? cBrand;
+  CVmmProductType? cVmmProductType;
   bool? cIsPromoAvailable;
-  Message? cPromoMessage;
+  CPromoMessage? cPromoMessage;
   bool? cPriceRange;
   double? cListprice;
   double? cSaleprice;
-  int? cDiscount;
-  Image? image;
+  double? cDiscount;
 
   factory Hit.fromJson(Map<String, dynamic> json) => Hit(
         type: hitTypeValues.map![json["_type"]],
         hitType: hitTypeEnumValues.map![json["hit_type"]],
+        image: Image.fromJson(json["image"]),
         link: json["link"],
         productId: json["product_id"],
         productName: json["product_name"],
         productType: ProductType.fromJson(json["product_type"]),
         representedProduct:
             RepresentedProduct.fromJson(json["represented_product"]),
-        cDefaultVariant: Variant.fromJson(json["c_defaultVariant"]),
-        cVariants: List<Variant>.from(
-            json["c_variants"].map((x) => Variant.fromJson(x))),
         cAvailability: cAvailabilityValues.map![json["c_availability"]],
-        cBrand: json["c_brand"],
-        cVmmProductType: vmmProductTypeValues.map![json["c_vmmProductType"]],
+        cBrand: cBrandValues.map![json["c_brand"]],
+        cVmmProductType: cVmmProductTypeValues.map![json["c_vmmProductType"]],
         cIsPromoAvailable: json["c_isPromoAvailable"],
-        cPromoMessage: messageValues.map![json["c_promoMessage"]],
+        cPromoMessage: cPromoMessageValues.map![json["c_promoMessage"]],
         cPriceRange: json["c_priceRange"],
-        cListprice: json["c_listprice"].toDouble(),
-        cSaleprice: json["c_saleprice"].toDouble(),
+        cListprice: json["c_listprice"],
+        cSaleprice: json["c_saleprice"],
         cDiscount: json["c_discount"] == null ? null : json["c_discount"],
-        image: json["image"] == null ? null : Image.fromJson(json["image"]),
       );
 
   Map<String, dynamic> toJson() => {
         "_type": hitTypeValues.reverse![type],
         "hit_type": hitTypeEnumValues.reverse![hitType],
+        "image": image!.toJson(),
         "link": link,
         "product_id": productId,
         "product_name": productName,
         "product_type": productType!.toJson(),
         "represented_product": representedProduct!.toJson(),
-        "c_defaultVariant": cDefaultVariant!.toJson(),
-        "c_variants": List<dynamic>.from(cVariants!.map((x) => x.toJson())),
         "c_availability": cAvailabilityValues.reverse![cAvailability],
-        "c_brand": cBrand,
-        "c_vmmProductType": vmmProductTypeValues.reverse![cVmmProductType],
+        "c_brand": cBrandValues.reverse![cBrand],
+        "c_vmmProductType": cVmmProductTypeValues.reverse![cVmmProductType],
         "c_isPromoAvailable": cIsPromoAvailable,
-        "c_promoMessage": messageValues.reverse![cPromoMessage],
+        "c_promoMessage": cPromoMessageValues.reverse![cPromoMessage],
         "c_priceRange": cPriceRange,
         "c_listprice": cListprice,
         "c_saleprice": cSaleprice,
         "c_discount": cDiscount == null ? null : cDiscount,
-        "image": image == null ? null : image!.toJson(),
       };
 }
 
@@ -166,106 +157,33 @@ enum CAvailability { IN_STOCK }
 
 final cAvailabilityValues = EnumValues({"IN_STOCK": CAvailability.IN_STOCK});
 
-class Variant {
-  Variant({
-    this.productId,
-    this.name,
-    this.image,
-    this.listPrice,
-    this.salePrice,
-    this.discount,
-    this.promotionAvailable,
-    this.promoCalloutMessage,
-    this.vmmProductType,
-    this.isDefault,
-    this.variationValues,
-  });
+enum CBrand { BRINK, DRIFTWOOD }
 
-  String? productId;
-  String? name;
-  String? image;
-  int? listPrice;
-  double? salePrice;
-  int? discount;
-  bool? promotionAvailable;
-  Message? promoCalloutMessage;
-  VmmProductType? vmmProductType;
-  bool? isDefault;
-  VariationValues? variationValues;
+final cBrandValues =
+    EnumValues({"Brink": CBrand.BRINK, "Driftwood": CBrand.DRIFTWOOD});
 
-  factory Variant.fromJson(Map<String, dynamic> json) => Variant(
-        productId: json["product_id"],
-        name: json["name"],
-        image: json["image"],
-        listPrice: json["list_price"],
-        salePrice: json["sale_price"].toDouble(),
-        discount: json["discount"],
-        promotionAvailable: json["promotion_available"],
-        promoCalloutMessage: json["promo_callout_message"] == null
-            ? null
-            : messageValues.map![json["promo_callout_message"]],
-        vmmProductType: vmmProductTypeValues.map![json["vmmProductType"]],
-        isDefault: json["isDefault"],
-        variationValues: json["variation_values"] == null
-            ? null
-            : VariationValues.fromJson(json["variation_values"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "product_id": productId,
-        "name": name,
-        "image": image,
-        "list_price": listPrice,
-        "sale_price": salePrice,
-        "discount": discount,
-        "promotion_available": promotionAvailable,
-        "promo_callout_message": promoCalloutMessage == null
-            ? null
-            : messageValues.reverse![promoCalloutMessage],
-        "vmmProductType": vmmProductTypeValues.reverse![vmmProductType],
-        "isDefault": isDefault,
-        "variation_values":
-            variationValues == null ? null : variationValues!.toJson(),
-      };
+enum CPromoMessage {
+  GET_50_OFF,
+  EMPTY,
+  BUY_2_ABOVE_GET_20_OFF,
+  BUY_1_GET_1_FREE
 }
 
-enum Message { BUY_1_GET_1_FREE, EMPTY, BUY_2_GET_1_FREE_YELLOW_HIPPO_DIAPERS }
-
-final messageValues = EnumValues({
-  "Buy 1 Get 1 Free": Message.BUY_1_GET_1_FREE,
-  "BUY 2 GET 1 FREE - YELLOW HIPPO DIAPERS":
-      Message.BUY_2_GET_1_FREE_YELLOW_HIPPO_DIAPERS,
-  "": Message.EMPTY
+final cPromoMessageValues = EnumValues({
+  "Buy 1 Get 1 Free": CPromoMessage.BUY_1_GET_1_FREE,
+  "Buy 2 & Above Get 20 % Off": CPromoMessage.BUY_2_ABOVE_GET_20_OFF,
+  "": CPromoMessage.EMPTY,
+  "Get ₹50 off": CPromoMessage.GET_50_OFF
 });
 
-class VariationValues {
-  VariationValues({
-    this.name,
-    this.value,
-  });
+enum CVmmProductType { APPAREL }
 
-  String? name;
-  String? value;
+final cVmmProductTypeValues = EnumValues({"Apparel": CVmmProductType.APPAREL});
 
-  factory VariationValues.fromJson(Map<String, dynamic> json) =>
-      VariationValues(
-        name: json["name"],
-        value: json["value"],
-      );
+enum HitTypeEnum { VARIATION_GROUP }
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "value": value,
-      };
-}
-
-enum VmmProductType { FMCG }
-
-final vmmProductTypeValues = EnumValues({"FMCG": VmmProductType.FMCG});
-
-enum HitTypeEnum { MASTER }
-
-final hitTypeEnumValues = EnumValues({"master": HitTypeEnum.MASTER});
+final hitTypeEnumValues =
+    EnumValues({"variation_group": HitTypeEnum.VARIATION_GROUP});
 
 class Image {
   Image({
@@ -276,14 +194,14 @@ class Image {
     this.title,
   });
 
-  String? type;
+  ImageType? type;
   String? alt;
   String? disBaseLink;
   String? link;
   String? title;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-        type: json["_type"],
+        type: imageTypeValues.map![json["_type"]],
         alt: json["alt"],
         disBaseLink: json["dis_base_link"],
         link: json["link"],
@@ -291,7 +209,7 @@ class Image {
       );
 
   Map<String, dynamic> toJson() => {
-        "_type": type,
+        "_type": imageTypeValues.reverse![type],
         "alt": alt,
         "dis_base_link": disBaseLink,
         "link": link,
@@ -299,23 +217,27 @@ class Image {
       };
 }
 
+enum ImageType { IMAGE }
+
+final imageTypeValues = EnumValues({"image": ImageType.IMAGE});
+
 class ProductType {
   ProductType({
     this.type,
-    this.master,
+    this.variationGroup,
   });
 
   ProductTypeType? type;
-  bool? master;
+  bool? variationGroup;
 
   factory ProductType.fromJson(Map<String, dynamic> json) => ProductType(
         type: productTypeTypeValues.map![json["_type"]],
-        master: json["master"],
+        variationGroup: json["variation_group"],
       );
 
   Map<String, dynamic> toJson() => {
         "_type": productTypeTypeValues.reverse![type],
-        "master": master,
+        "variation_group": variationGroup,
       };
 }
 

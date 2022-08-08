@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:vishal_mega_mart_app/screens/bloc/lastbloc.dart';
+import 'package:vishal_mega_mart_app/screens/bloc/productlistbloc.dart';
 import 'package:vishal_mega_mart_app/screens/lastpagewidget.dart';
 import 'package:vishal_mega_mart_app/screens/model/lastmodel.dart';
+import 'package:vishal_mega_mart_app/screens/model/productlist.dart';
+
+import 'bloc/productlistbloc.dart';
 
 class LastPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bloc.fetchalllast();
+    bloc.fetchallproductlist();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
       body: StreamBuilder(
-        stream: bloc.alllastapi,
-        builder: (context, AsyncSnapshot<LastModel> snapshot) {
+        stream: bloc.allproductlist,
+        builder: (context, AsyncSnapshot<ProductListModel> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
           } else if (snapshot.hasError) {
@@ -25,16 +28,18 @@ class LastPage extends StatelessWidget {
     );
   }
 
-  Widget buildList(AsyncSnapshot<LastModel> snapshot) {
+  Widget buildList(AsyncSnapshot<ProductListModel> snapshot) {
     return GridView.builder(
-        itemCount: 7,
-        gridDelegate:
-            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int index) {
-          return Commonwidget(
-              discription: snapshot.data!.categories![index].name!.nameDefault
-                  .toString(),
-              imglink: snapshot.data!.categories![index].thumbnail.toString());
-        });
+      itemCount: 2,
+      gridDelegate:
+          new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return Commonwidget(
+            brand: snapshot.data!.hits![index].cBrand.toString(),
+            discription: snapshot.data!.hits![index].productName.toString(),
+            price: snapshot.data!.hits![index].cSaleprice.toString(),
+            imglink: snapshot.data!.hits![index].image!.link.toString());
+      },
+    );
   }
 }
