@@ -1,17 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:vishal_mega_mart_app/screens/appBar.dart';
 import 'package:vishal_mega_mart_app/screens/bloc/categorybloc.dart';
-import 'package:vishal_mega_mart_app/screens/category.dart';
 import 'package:vishal_mega_mart_app/screens/categoryss.dart';
-import 'package:vishal_mega_mart_app/screens/model/category_section.dart';
+import 'package:vishal_mega_mart_app/screens/extra.dart';
+import 'package:vishal_mega_mart_app/screens/page.dart';
+import 'package:vishal_mega_mart_app/screens/productdetailsapipage.dart';
+import 'package:vishal_mega_mart_app/screens/searchwidget.dart';
+import 'package:vishal_mega_mart_app/screens/themes/app_fonts.dart';
+import 'package:vishal_mega_mart_app/screens/themes/apptheme.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -25,38 +27,102 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
+
+    print("++++++++++${myController.text}+++++++++++++");
     myController.dispose();
     super.dispose();
   }
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   getpost();
-  //   print("+++++++++++++++++++++++");
-  // }
+  void text() {
+    Searchtext.searchelemnt = myController.text;
+    print("++++++++++${myController.text}+++++++++++++");
+    print("++++++++++${Searchtext.searchelemnt}+++++++++++++");
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    text();
+  }
+
+  var category = [
+    {"name": "Women", "url": "assets/images.jpeg"},
+    {"name": "Men's Fashion", "url": "assets/men.webp"},
+    {"name": "Kids & Infants", "url": "assets/kid.webp"},
+    {"name": "Home & Kitchen", "url": "assets/home.jpeg"},
+    {"name": "Application", "url": "assets/electronic.jpeg"},
+  ];
 
   @override
   Widget build(BuildContext context) {
-     bloc.fetchallcategory();
-    
-    
+    bloc.fetchallcategory();
+
     return Scaffold(
-      appBar: AppBar(
-        
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(70),
-            bottomLeft: Radius.circular(70),
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0), // here the desired height
+        child: AppBar(
+          backgroundColor: AppTheme.appThemeColor,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 70,
+          elevation: 0,
+          titleSpacing: 0,
+          title: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 55,
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12),
+              child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      "assets/location.png",
+                      height: 25,
+                      color: AppTheme.whitColor,
+                    ),
+                    Expanded(
+                        child: Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 14, right: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Noida Sector 1",
+                                  style: GoogleFonts.poppins(
+                                      color: AppTheme.whitColor,
+                                      fontSize: 17),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+                    Image.asset(
+                      "assets/like.png",
+                      height: 25,
+                      color: AppTheme.whitColor,
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Image.asset(
+                      "assets/shopping-cart.png",
+                      height: 25,
+                      color: AppTheme.whitColor,
+                    ),
+                  ]),
+            ),
           ),
         ),
-        title: const Center(
-          child: Text(
-            "Vishal mega mart",
-          ),
-        ),
-        backgroundColor: Colors.lightBlueAccent.withOpacity(0.4),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -64,68 +130,69 @@ class _HomeState extends State<Home> {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [],
-              ),
-              TextField(
-                controller: myController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter a search term',
+              Padding(
+                padding: EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppTheme.whitColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+
+                    textInputAction: TextInputAction.next,
+                    style: GoogleFonts.poppins(
+                      fontSize: AppFonts.subtitle1,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: .5,
+                    ),
+
+                    cursorColor: AppTheme.buttonThemeColor,
+                    // cursorHeight: scaler.scalerV(20),
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+                        counterStyle: const TextStyle(
+                          color: AppTheme.hintText,
+                        ),
+                        hintText: "Search for Product",
+                        enabledBorder: outlineBorder,
+                        hintStyle: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                          letterSpacing: .5,
+                          fontSize: AppFonts.subtitle1,
+                          color: AppTheme.hintText,
+                        ),
+                        focusedBorder: outlineBorder,
+                        focusedErrorBorder: outlineBorder,
+                        errorBorder: outlineBorder,
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: AppTheme.hintText,
+                        ),
+                        // contentPadding: EdgeInsets.only(
+                        //     left: 10, right: 5, bottom: 12,top: 12),
+                        border: InputBorder.none),
+                  ),
                 ),
               ),
-              // FloatingActionButton(
-              //   onPressed: () {
-              //     {
-              //       log("++++ BUTTON CLICKED ++++++");
-              //     }
-              //     ;
-              //   },
-              // ),
               const SizedBox(height: 10),
-              const SizedBox(height: 15),
+              // const SizedBox(height: 15),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Shop by category",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                 style: TextStyle(fontSize: 20),
                 ),
               ),
               const SizedBox(height: 10),
-              //     Container(
-              //       //decoration: BoxDecoration(color: Colors.red[100]),
-              //       height: 130,
-              //       child: StreamBuilder(
-              //           stream: bloc.allcategory,
-              //           builder:
-              //               (context, AsyncSnapshot<CategorySection> snapshot) {
-              //                 if (snapshot.hasData) {
-              //   return Text("====================");
-              // } else if (snapshot.hasError) {
-              //   return Text(snapshot.error.toString());
-              // }
-              // return Center(child: CircularProgressIndicator());
-
-              //           }),
-              //     ),
-              Container(height: 150, child: MovieList()
-                  // buildList(AsyncSnapshot<>)
-                  // child:   ListView.builder(
-                  //         shrinkWrap: true,
-                  //         scrollDirection: Axis.horizontal,
-                  //         itemCount: 5,
-                  //         itemBuilder: (BuildContext context, int index) =>
-                  //             const CategoriesItem(
-                  //           categoryName: "aaaaa",
-                  //           image: "",
-                  //         ),
-                  //       ),
-                  //
-                  ),
+              //Expanded(child: MovieList()),
+              Container(
+                  height: MediaQuery.of(context).size.height * .14,
+                  width: double.infinity,
+                  child: MovieList()),
               const SizedBox(height: 15),
               const Align(
                 alignment: Alignment.centerLeft,
@@ -135,26 +202,65 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 10),
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  viewportFraction: 1,
-                  autoPlay: true,
+              // CarouselSlider(
+              //   options: CarouselOptions(
+              //     height: 200.0,
+              //     viewportFraction: 1,
+              //     autoPlay: true,
+              //   ),
+              //   items: [1, 2, 3, 4, 5].map((i) {
+              //     return Builder(
+              //       builder: (BuildContext context) {
+              //         return Container(
+              //           width: MediaQuery.of(context).size.width,
+              //           margin: EdgeInsets.symmetric(horizontal: 1.0),
+              //           // decoration: BoxDecoration(color: Colors.red[100]),
+              //           child: ClipRRect(
+              //             child: Image.asset("assets/img.png"),
+              //           ),
+              //         );
+              //       },
+              //     );
+              //   }).toList(),
+              // ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 8,
                 ),
-                items: [1, 2, 3, 4, 5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 1.0),
-                        // decoration: BoxDecoration(color: Colors.red[100]),
-                        child: ClipRRect(
-                          child: Image.asset("assets/img.png"),
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
+                child: SizedBox(
+                  height: 200.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: Carousel(
+                    images: [
+                      Image.asset(
+                        "assets/ss1.webp",
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        "assets/ss2.webp",
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        "assets/ss3.jpeg",
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        "assets/ss4.jpeg",
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        "assets/ss5.jpeg",
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ],
+                    dotSize: 4.0,
+                    dotSpacing: 15.0,
+                    dotColor: Colors.lightGreenAccent,
+                    indicatorBgPadding: 5.0,
+                    dotBgColor: Colors.transparent,
+                    borderRadius: true,
+                  ),
+                ),
               ),
               const SizedBox(height: 15),
               const Align(
@@ -165,22 +271,26 @@ class _HomeState extends State<Home> {
                 ),
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                height: 1000,
-                child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+              GridView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    mainAxisExtent: 300),
+                itemCount: category.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    // color: AppTheme.appThemeColor,
+                    child: Image.asset(
+                      "${category[index]["url"]}",
+                      height: 200,
+                      fit: BoxFit.cover,
                     ),
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        //color: Colors.red[100],
-                        child: Image.asset("assets/thor.jpg"),
-                      );
-                    }),
+                  );
+                },
               ),
             ],
           ),
@@ -188,4 +298,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+class Searchtext {
+  static var searchelemnt;
 }

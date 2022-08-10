@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:vishal_mega_mart_app/screens/productDetails.dart';
 import 'package:vishal_mega_mart_app/screens/subcat.dart';
+import 'package:vishal_mega_mart_app/screens/themes/apptheme.dart';
 
 class CategoriesItem extends StatelessWidget {
   final String? image;
   final String? categoryName;
-  final Color color;
-  final double height;
-  final double width;
 
   CategoriesItem({
     Key? key,
     this.image,
     this.categoryName = '',
-    this.color = Colors.grey,
-    this.height = 90,
-    this.width = 90,
   }) : super(key: key);
 
   @override
@@ -30,58 +26,37 @@ class CategoriesItem extends StatelessWidget {
         );
       },
       child: Container(
-        width: 100,
-        padding: const EdgeInsets.only(
-          right: 1,
-          left: 5,
-        ),
+        height: MediaQuery.of(context).size.height * .11,
+        width: MediaQuery.of(context).size.height * .14,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: height,
-              width: width,
-              margin: const EdgeInsetsDirectional.only(end: 4, start: 3),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.blueGrey,
-                    offset: Offset(0.0, 5.0), //(x,y)
-                    blurRadius: 5,
-                  ),
-                ],
-              ),
-              // padding: EdgeInsets.only(right: appDimen.sp5),
+              height: MediaQuery.of(context).size.height * .1,
+              width: MediaQuery.of(context).size.height * .1,
+              decoration: const BoxDecoration(
+                  color: AppTheme.whitColor, shape: BoxShape.circle),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(100),
                 child: image != null && image!.isNotEmpty
                     ? Image.network(
-                        image!,
+                        image.toString(),
                         fit: BoxFit.contain,
                       )
-                    : Image.asset("assets/p.jpeg"),
+                    : Image.asset(image.toString()),
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             Text(
-              categoryName != null ? categoryName! : '',
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                shadows: [
-                  Shadow(
-                    color: Colors.grey,
-                    offset: Offset(0.0, 2.0), //(x,y)
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-              maxLines: 2,
+              categoryName.toString(),
               textAlign: TextAlign.center,
-            )
+              style: GoogleFonts.poppins(
+                color: AppTheme.blackText,
+                fontSize: 10,
+                fontWeight: FontWeight.normal,
+                wordSpacing: 0.3,
+                letterSpacing: 0.3,
+              ),
+            ),
           ],
         ),
       ),

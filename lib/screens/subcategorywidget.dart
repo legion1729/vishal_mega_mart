@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_mega_mart_app/screens/lastpagescreen.dart';
+import 'package:vishal_mega_mart_app/screens/lastscrenn.dart';
 import 'package:vishal_mega_mart_app/screens/productDetails.dart';
 
 class SubCat extends StatelessWidget {
@@ -29,7 +30,7 @@ class SubCat extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LastPage(),
+                  builder: (context) => LatScreen(),
                 ),
               );
             },

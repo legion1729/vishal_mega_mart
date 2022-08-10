@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vishal_mega_mart_app/screens/home.dart';
-import 'package:vishal_mega_mart_app/screens/locator.dart';
 
 void main() => runApp(const MyApp());
 

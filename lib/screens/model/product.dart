@@ -88,13 +88,14 @@ class Hit {
     this.cVmmFit,
     this.cVmmGender,
     this.cVmmMerchandiseCategory,
+    this.cVmmPattern,
     this.cVmmProduct,
-    this.cVmmPromotions,
     this.cVmmQualityAssuranceId,
     this.cVmmReturnWindow,
     this.cVmmReturnWindowId,
     this.cVmmSize,
     this.cVmmSizeChart,
+    this.cVmmSleeve,
     this.cVmmStyle,
   });
 
@@ -118,31 +119,32 @@ class Hit {
   CColor? cColor;
   String? cSize;
   CVmmBrand? cVmmColor;
-  CVmmDesign? cVmmDesign;
+  CVmmBrand? cVmmDesign;
   CVmmBrand? cVmmFabric;
   CVmmBrand? cVmmFit;
   CVmmBrand? cVmmGender;
   CVmmMerchandiseCategory? cVmmMerchandiseCategory;
+  CVmm? cVmmPattern;
   CVmmBrand? cVmmProduct;
-  CVmmBrand? cVmmPromotions;
   CVmmQualityAssuranceId? cVmmQualityAssuranceId;
   CVmmBrand? cVmmReturnWindow;
   CVmmReturnWindowId? cVmmReturnWindowId;
   CVmmBrand? cVmmSize;
   CVmmSizeChart? cVmmSizeChart;
+  CVmm? cVmmSleeve;
   CVmmBrand? cVmmStyle;
 
   factory Hit.fromJson(Map<String, dynamic> json) => Hit(
-        type: hitTypeValues.map[json["_type"]],
+        type: hitTypeValues.map![json["_type"]],
         resourceState: json["_resource_state"],
-        brand: brandValues.map[json["brand"]],
+        brand: brandValues.map![json["brand"]],
         creationDate: DateTime.parse(json["creation_date"]),
         id: json["id"],
         lastModified: DateTime.parse(json["last_modified"]),
         link: json["link"],
         name: CVmmBrand.fromJson(json["name"]),
         onlineFlag: OnlineFlag.fromJson(json["online_flag"]),
-        owningCatalogId: owningCatalogIdValues.map[json["owning_catalog_id"]],
+        owningCatalogId: owningCatalogIdValues.map![json["owning_catalog_id"]],
         searchable: OnlineFlag.fromJson(json["searchable"]),
         shortDescription: ShortDescription.fromJson(json["short_description"]),
         hitType: Type.fromJson(json["type"]),
@@ -151,16 +153,16 @@ class Hit {
         cVmmProductType: CVmmBrand.fromJson(json["c_vmmProductType"]),
         taxClassId: json["tax_class_id"] == null
             ? null
-            : taxClassIdValues.map[json["tax_class_id"]],
+            : taxClassIdValues.map![json["tax_class_id"]],
         cColor:
-            json["c_color"] == null ? null : cColorValues.map[json["c_color"]],
+            json["c_color"] == null ? null : cColorValues.map![json["c_color"]],
         cSize: json["c_size"] == null ? null : json["c_size"],
         cVmmColor: json["c_vmmColor"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmColor"]),
         cVmmDesign: json["c_vmmDesign"] == null
             ? null
-            : CVmmDesign.fromJson(json["c_vmmDesign"]),
+            : CVmmBrand.fromJson(json["c_vmmDesign"]),
         cVmmFabric: json["c_vmmFabric"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmFabric"]),
@@ -173,28 +175,32 @@ class Hit {
         cVmmMerchandiseCategory: json["c_vmmMerchandiseCategory"] == null
             ? null
             : cVmmMerchandiseCategoryValues
-                .map[json["c_vmmMerchandiseCategory"]],
+                .map![json["c_vmmMerchandiseCategory"]],
+        cVmmPattern: json["c_vmmPattern"] == null
+            ? null
+            : CVmm.fromJson(json["c_vmmPattern"]),
         cVmmProduct: json["c_vmmProduct"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmProduct"]),
-        cVmmPromotions: json["c_vmmPromotions"] == null
-            ? null
-            : CVmmBrand.fromJson(json["c_vmmPromotions"]),
         cVmmQualityAssuranceId: json["c_vmmQualityAssuranceId"] == null
             ? null
-            : cVmmQualityAssuranceIdValues.map[json["c_vmmQualityAssuranceId"]],
+            : cVmmQualityAssuranceIdValues
+                .map![json["c_vmmQualityAssuranceId"]],
         cVmmReturnWindow: json["c_vmmReturnWindow"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmReturnWindow"]),
         cVmmReturnWindowId: json["c_vmmReturnWindowId"] == null
             ? null
-            : cVmmReturnWindowIdValues.map[json["c_vmmReturnWindowId"]],
+            : cVmmReturnWindowIdValues.map![json["c_vmmReturnWindowId"]],
         cVmmSize: json["c_vmmSize"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmSize"]),
         cVmmSizeChart: json["c_vmmSizeChart"] == null
             ? null
             : CVmmSizeChart.fromJson(json["c_vmmSizeChart"]),
+        cVmmSleeve: json["c_vmmSleeve"] == null
+            ? null
+            : CVmm.fromJson(json["c_vmmSleeve"]),
         cVmmStyle: json["c_vmmStyle"] == null
             ? null
             : CVmmBrand.fromJson(json["c_vmmStyle"]),
@@ -229,9 +235,8 @@ class Hit {
         "c_vmmMerchandiseCategory": cVmmMerchandiseCategory == null
             ? null
             : cVmmMerchandiseCategoryValues.reverse![cVmmMerchandiseCategory],
+        "c_vmmPattern": cVmmPattern == null ? null : cVmmPattern!.toJson(),
         "c_vmmProduct": cVmmProduct == null ? null : cVmmProduct!.toJson(),
-        "c_vmmPromotions":
-            cVmmPromotions == null ? null : cVmmPromotions!.toJson(),
         "c_vmmQualityAssuranceId": cVmmQualityAssuranceId == null
             ? null
             : cVmmQualityAssuranceIdValues.reverse![cVmmQualityAssuranceId],
@@ -243,21 +248,21 @@ class Hit {
         "c_vmmSize": cVmmSize == null ? null : cVmmSize!.toJson(),
         "c_vmmSizeChart":
             cVmmSizeChart == null ? null : cVmmSizeChart!.toJson(),
+        "c_vmmSleeve": cVmmSleeve == null ? null : cVmmSleeve!.toJson(),
         "c_vmmStyle": cVmmStyle == null ? null : cVmmStyle!.toJson(),
       };
 }
 
-enum Brand { WAVELENGTH }
+enum Brand { DRIFTWOOD }
 
-final brandValues = EnumValues({"Wavelength": Brand.WAVELENGTH});
+final brandValues = EnumValues({"Driftwood": Brand.DRIFTWOOD});
 
-enum CColor { LIGHT_BLUE, BLACK, LIGHT_GREY, OLIVE }
+enum CColor { LIGHT_BLUE, DARK_BLUE, WHITE }
 
 final cColorValues = EnumValues({
-  "Black": CColor.BLACK,
+  "Dark Blue": CColor.DARK_BLUE,
   "Light Blue": CColor.LIGHT_BLUE,
-  "Light Grey": CColor.LIGHT_GREY,
-  "Olive": CColor.OLIVE
+  "White": CColor.WHITE
 });
 
 class CVmmBrand {
@@ -270,49 +275,46 @@ class CVmmBrand {
   String? hiIn;
 
   factory CVmmBrand.fromJson(Map<String, dynamic> json) => CVmmBrand(
-        cVmmBrandDefault: json["default"] == null ? null : json["default"],
+        cVmmBrandDefault: json["default"],
         hiIn: json["hi-IN"],
       );
 
   Map<String, dynamic> toJson() => {
-        "default": cVmmBrandDefault == null ? null : cVmmBrandDefault,
+        "default": cVmmBrandDefault,
         "hi-IN": hiIn,
       };
 }
 
-class CVmmDesign {
-  CVmmDesign({
-    this.cVmmDesignDefault,
+enum CVmmMerchandiseCategory { THE_111010007399, THE_111010012399 }
+
+final cVmmMerchandiseCategoryValues = EnumValues({
+  "111010007-399": CVmmMerchandiseCategory.THE_111010007399,
+  "111010012-399": CVmmMerchandiseCategory.THE_111010012399
+});
+
+class CVmm {
+  CVmm({
+    this.cVmmDefault,
   });
 
-  DefaultEnum? cVmmDesignDefault;
+  DefaultEnum? cVmmDefault;
 
-  factory CVmmDesign.fromJson(Map<String, dynamic> json) => CVmmDesign(
-        cVmmDesignDefault: defaultEnumValues.map[json["default"]],
+  factory CVmm.fromJson(Map<String, dynamic> json) => CVmm(
+        cVmmDefault: defaultEnumValues.map![json["default"]],
       );
 
   Map<String, dynamic> toJson() => {
-        "default": defaultEnumValues.reverse![cVmmDesignDefault],
+        "default": defaultEnumValues.reverse![cVmmDefault],
       };
 }
 
-enum DefaultEnum { SCRAPING_WHISKERING }
+enum DefaultEnum { SOLID, PRINTED, FULL_SLEEVE, HALF_SLEEVE }
 
-final defaultEnumValues =
-    EnumValues({"Scraping & Whiskering": DefaultEnum.SCRAPING_WHISKERING});
-
-enum CVmmMerchandiseCategory {
-  THE_112020003599,
-  THE_112020003999,
-  THE_112020003799,
-  THE_112020003899
-}
-
-final cVmmMerchandiseCategoryValues = EnumValues({
-  "112020003-599": CVmmMerchandiseCategory.THE_112020003599,
-  "112020003-799": CVmmMerchandiseCategory.THE_112020003799,
-  "112020003-899": CVmmMerchandiseCategory.THE_112020003899,
-  "112020003-999": CVmmMerchandiseCategory.THE_112020003999
+final defaultEnumValues = EnumValues({
+  "Full Sleeve": DefaultEnum.FULL_SLEEVE,
+  "Half Sleeve": DefaultEnum.HALF_SLEEVE,
+  "Printed": DefaultEnum.PRINTED,
+  "Solid": DefaultEnum.SOLID
 });
 
 enum CVmmQualityAssuranceId { ASSET_APPARELS_QUALITY_ASSURANCE }
@@ -343,10 +345,10 @@ class CVmmSizeChart {
   Path? path;
 
   factory CVmmSizeChart.fromJson(Map<String, dynamic> json) => CVmmSizeChart(
-        type: cVmmSizeChartTypeValues.map[json["_type"]],
+        type: cVmmSizeChartTypeValues.map![json["_type"]],
         absUrl: json["abs_url"],
         disBaseUrl: json["dis_base_url"],
-        path: pathValues.map[json["path"]],
+        path: pathValues.map![json["path"]],
       );
 
   Map<String, dynamic> toJson() => {
@@ -357,11 +359,16 @@ class CVmmSizeChart {
       };
 }
 
-enum Path { IMAGES_SIZECHART_JEANS_SLIM_112020003_JPG }
+enum Path {
+  IMAGES_SIZECHART_CASUAL_SHIRT_FULL_SLEEVES_131010016_JPG,
+  IMAGES_SIZECHART_CASUAL_SHIRT_HALF_SLEEVES_131010017_JPG
+}
 
 final pathValues = EnumValues({
-  "images/sizechart/JEANS_SLIM_112020003.jpg":
-      Path.IMAGES_SIZECHART_JEANS_SLIM_112020003_JPG
+  "images/sizechart/Casual_shirt_full_sleeves_131010016.jpg":
+      Path.IMAGES_SIZECHART_CASUAL_SHIRT_FULL_SLEEVES_131010016_JPG,
+  "images/sizechart/Casual_shirt_Half_sleeves_131010017.jpg":
+      Path.IMAGES_SIZECHART_CASUAL_SHIRT_HALF_SLEEVES_131010017_JPG
 });
 
 enum CVmmSizeChartType { MEDIA_FILE }
@@ -381,7 +388,7 @@ class Type {
   bool? variant;
 
   factory Type.fromJson(Map<String, dynamic> json) => Type(
-        type: typeTypeValues.map[json["_type"]],
+        type: typeTypeValues.map![json["_type"]],
         master: json["master"] == null ? null : json["master"],
         variant: json["variant"] == null ? null : json["variant"],
       );
@@ -458,9 +465,9 @@ class DefaultClass {
   Markup? source;
 
   factory DefaultClass.fromJson(Map<String, dynamic> json) => DefaultClass(
-        type: defaultTypeValues.map[json["_type"]],
-        markup: markupValues.map[json["markup"]],
-        source: markupValues.map[json["source"]],
+        type: defaultTypeValues.map![json["_type"]],
+        markup: markupValues.map![json["markup"]],
+        source: markupValues.map![json["source"]],
       );
 
   Map<String, dynamic> toJson() => {
@@ -552,14 +559,14 @@ class TextQuery {
 }
 
 class EnumValues<T> {
-  Map<String, T> map;
+  Map<String, T>? map;
   Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
   Map<T, String>? get reverse {
     if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
+      reverseMap = map!.map((k, v) => new MapEntry(v, k));
     }
     return reverseMap;
   }

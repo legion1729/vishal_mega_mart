@@ -14,7 +14,7 @@ class Repository {
   Future<CategorySection> getallcategory() => categoryprovider.getcategory();
 
   final productprovider = ProductProvider();
-  Future<ProductModel> getallproducts() => productprovider.getproduct();
+  Future<ProductModel> getallproducts() => productprovider.product();
 
 final subcatprovider = SUbcatProvider();
   Future<SubCatModel> getallsubcat() => subcatprovider.getsubcat();

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Commonwidget extends StatelessWidget {
-  final String imglink;
+   String? imglink;
   final String discription;
   final String brand;
-  final String price;
+  String? price;
 
-  const Commonwidget(
+  Commonwidget(
       {required this.brand,
-      required this.price,
+      this.price,
       required this.discription,
-      required this.imglink});
+       this.imglink});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,22 +29,22 @@ class Commonwidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage(imglink),
+                image: NetworkImage(imglink.toString()),
               ),
             ),
           ),
           const SizedBox(
-            height: 7,
+            height: 2,
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
               brand,
-              style:const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 3,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -53,13 +53,13 @@ class Commonwidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 2,
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              price,
-              style:const TextStyle(fontWeight: FontWeight.bold),
+              price.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         ],

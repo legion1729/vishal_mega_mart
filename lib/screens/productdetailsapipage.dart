@@ -3,7 +3,7 @@ import 'package:vishal_mega_mart_app/screens/bloc/productbloc.dart';
 import 'package:vishal_mega_mart_app/screens/model/product.dart';
 
 
-class MovieListss extends StatelessWidget {
+class SearchProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bloc.fetchallproduct();
@@ -25,19 +25,19 @@ class MovieListss extends StatelessWidget {
                 return Card(
                   //color: Colors.lightBlueAccent,
                   child: Column(
-                    children: [
-                      Expanded(
-                    //     child:snapshot.data!.hits![index].cVmmSizeChart!.path.toString().isNotEmpty
-                    // ? Image.asset(
-                    //       snapshot.data!.hits![index].cVmmSizeChart!.path.toString(),
-                    //       //fit: BoxFit.fill,
-                    //     ): assets/t.jpg
-                    child:Image.asset(snapshot.data!.hits![index].cVmmSizeChart!.path.toString()),
-                      ),
+                    children:const [
+                    //   Expanded(
+                    // //     child:snapshot.data!.hits![index].cVmmSizeChart!.path.toString().isNotEmpty
+                    // // ? Image.asset(
+                    // //       snapshot.data!.hits![index].cVmmSizeChart!.path.toString(),
+                    // //       //fit: BoxFit.fill,
+                    // //     ): assets/t.jpg
+                    // child: NetworkImage(imglink),
+                    //   ),
                        Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          snapshot.data!.hits![index].cVmmBrand!.cVmmBrandDefault.toString(),
+                          "some",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class MovieListss extends StatelessWidget {
                        Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                         snapshot.data!.hits![index].name!.cVmmBrandDefault.toString(),
+                         "someeeeeee",
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         ),
                       ),

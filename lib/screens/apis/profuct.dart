@@ -1,57 +1,55 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:vishal_mega_mart_app/screens/constant.dart';
+import 'package:vishal_mega_mart_app/screens/home.dart';
 import 'package:vishal_mega_mart_app/screens/model/product.dart';
 
 class ProductProvider {
   //Client client = Client();
-  Future<ProductModel> getproduct() async {
+  Future<ProductModel> product() async {
+    // ignore: avoid_print
+    print("======= API CALLING  =========",);
+    const token = tokens.TOKEN;
+    
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+          'Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJEMWhPUDdEODN4TjBqZWlqaTI3WWFvZFRjL0E9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXVkaXRUcmFja2luZ0lkIjoiYzI3YmE4Y2QtNjVlYy00N2ZhLWIxODQtNDkwZjYwOWI2N2RkLTMzMDY0ODkiLCJzdWJuYW1lIjoiOTgwNGY4YjQtZTQzMS00OTUwLWE3NDMtYmRhMjJmMDllYmI4IiwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50LmRlbWFuZHdhcmUuY29tOjQ0My9kd3Nzby9vYXV0aDIiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiI0OEE5UlZ4dnB0d2N2TU5aQk9kbEN3M040eVUiLCJhdWQiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJuYmYiOjE2NjAxMjc5MDYsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJzY29wZSI6WyJtYWlsIl0sImF1dGhfdGltZSI6MTY2MDEyNzkwNiwicmVhbG0iOiIvIiwiZXhwIjoxNjYwMTI5NzA2LCJpYXQiOjE2NjAxMjc5MDYsImV4cGlyZXNfaW4iOjE4MDAsImp0aSI6IlctM2JFUFdsdHVET2p3ekRoR2dBVEp1bFpLTSIsImNsaWVudF9pZCI6Ijk4MDRmOGI0LWU0MzEtNDk1MC1hNzQzLWJkYTIyZjA5ZWJiOCJ9.E5lvd1ikAZll0iTC0-tI7gGBBDL_MP24gQtF1m28Fuzv6YXz0ri7HLg3kR8QeZocJGEuJ9kiKhrkzXusVA7Xyu9wfKAk3YXObpYx3yTAIvIT5IA-PC0f5TLpBORtUIqjm6jKSC-MUR6DWUXtupKe3EYgE6LW1yhH8zWzkNnSKtgBYyy-E1fY6LmmfhSqT3tzytzaxkSR0AXrqY-4Kkjcu5Q1TS28ywsDeN0Ysw8v4UwSAVmyHBt82T4Re-IUfrq2kSHas9bcpQf1rHRklpsmy7kqItDazx49BZIP7AS9Hxo5wdiN7wE4OAqn4-444y6T7_mZ3RziskIyL8V6HpNmng',
+          
+          
+    };
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'https://www.vishalmegamart.com/s/-/dw/data/v20_10/product_search'));
+    //var elemnt = Searchtext();
+    var value = Searchtext.searchelemnt;
+    print("========= VALUE======= ${value}+++++++++++");
+    request.body = json.encode({
+      "query": {
+        "text_query": {
+          "fields": ["name"],
+          "search_phrase": value
+        }
+      },
+      "expand": ["prices"],
+      "select": "(**)"
+    });
+    request.headers.addAll(headers);
 
+    http.StreamedResponse response = await request.send();
 
-
-
-
-
-var headers = {
-  'Content-Type': 'application/json',
-  
-  'Authorization': 'Bearer  eyJ0eXAiOiJKV1QiLCJraWQiOiJEMWhPUDdEODN4TjBqZWlqaTI3WWFvZFRjL0E9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXVkaXRUcmFja2luZ0lkIjoiZjBkY2U0OTEtNjBjMi00NDlhLWJkMWYtZDYyMTVjNDIwN2ZjLTQxMjIyNjU0NCIsInN1Ym5hbWUiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJpc3MiOiJodHRwczovL2FjY291bnQuZGVtYW5kd2FyZS5jb206NDQzL2R3c3NvL29hdXRoMiIsInRva2VuTmFtZSI6ImFjY2Vzc190b2tlbiIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6IlRjUVZKNUNKUVFSc0R3YlJtdlNzWUsxQndfNCIsImF1ZCI6Ijk4MDRmOGI0LWU0MzEtNDk1MC1hNzQzLWJkYTIyZjA5ZWJiOCIsIm5iZiI6MTY1OTUyMzUyMSwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInNjb3BlIjpbIm1haWwiXSwiYXV0aF90aW1lIjoxNjU5NTIzNTIxLCJyZWFsbSI6Ii8iLCJleHAiOjE2NTk1MjUzMjEsImlhdCI6MTY1OTUyMzUyMSwiZXhwaXJlc19pbiI6MTgwMCwianRpIjoiSS1YV2hxdG1nU3p2MGRwM0ZOMHJWem5QQjB3IiwiY2xpZW50X2lkIjoiOTgwNGY4YjQtZTQzMS00OTUwLWE3NDMtYmRhMjJmMDllYmI4In0.cxULVU5MjWc7ULcC15cSL2bD0gD3D2BJqEc4IwLlHIkn6y8mQJ7H-pIQRURAkRxu8IZnkAYxCMyGxt0ldhDrdPomlChgSrzUCmoEFNMs5d78rK6VqbKI4h3Ly2TpuC-9VrFmSMIVjvc4tpLaIgHRqls5stmlNfGZ2l5IoeOcm_Aypom9ktN4I_C-RFb8zOcz3AtMpWDRytLcjTDIC0ze4a-iO6GBkjTzcrksaQM0fBqrjygtXBUOyIdc3Yh1x38KPqtzmuKb3sunza1CdAdEr7GMBml2ur4oTnI79tTYKP2EI2MFlguAt2wBqtsmLNjTM6wnQNcSgzzQbzJaqsu4PA',
-  
-};
-var request = http.Request('POST', Uri.parse('https://www.vishalmegamart.com/s/-/dw/data/v20_10/product_search'));
-request.body = json.encode({
-  "query": {
-    "text_query": {
-      "fields": [
-        "name"
-      ],
-      "search_phrase": "jeans"
+    final res = await response.stream.bytesToString();
+ print("=======Product====== ${res}");
+    if (response.statusCode == 200) {
+      print("=======Product====== ${res}");
+      // print("============= ${await response.stream.bytesToString()}");
+    } else {
+      print("======= Failed to load posts =========");
     }
-  },
-  "expand": [
-    "prices"
-  ],
-  "select": "(**)"
-});
-request.headers.addAll(headers);
 
- http.StreamedResponse response = await request.send();
-
-   final res = await response.stream.bytesToString();
-
-if (response.statusCode == 200) {
-   print("=======Product====== ${ res}");
- // print("============= ${await response.stream.bytesToString()}");
-}
-else {
-  print("======= Product =========${res}");
-  
-}
-
-
-return ProductModel.fromJson(jsonDecode(res));
-
-
+    return ProductModel.fromJson(jsonDecode(res));
 
 //     const url =
 //         "https://www.vishalmegamart.com/s/-/dw/data/v20_10/product_search";

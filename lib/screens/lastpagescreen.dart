@@ -11,9 +11,9 @@ class LastPage extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc.fetchallproductlist();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: StreamBuilder(
         stream: bloc.allproductlist,
         builder: (context, AsyncSnapshot<ProductListModel> snapshot) {
@@ -30,14 +30,16 @@ class LastPage extends StatelessWidget {
 
   Widget buildList(AsyncSnapshot<ProductListModel> snapshot) {
     return GridView.builder(
-      itemCount: 2,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: snapshot.data!.hits!.length,
       gridDelegate:
           new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
         return Commonwidget(
             brand: snapshot.data!.hits![index].cBrand.toString(),
             discription: snapshot.data!.hits![index].productName.toString(),
-            price: snapshot.data!.hits![index].cSaleprice.toString(),
+            price: snapshot.data!.hits![index].cListprice.toString(),
             imglink: snapshot.data!.hits![index].image!.link.toString());
       },
     );
