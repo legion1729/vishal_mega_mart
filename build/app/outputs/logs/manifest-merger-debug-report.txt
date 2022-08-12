@@ -29,6 +29,7 @@ INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/An
 INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml:1:1-39:12
 INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml:1:1-39:12
 MERGED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml:1:1-39:12
+MERGED from [:shared_preferences_android] /home/legion/Work/Flutter/vishal_mega_mart/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:geolocator_android] /home/legion/Work/Flutter/vishal_mega_mart/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [:path_provider_android] /home/legion/Work/Flutter/vishal_mega_mart/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /home/legion/.gradle/caches/transforms-3/246793f755122fe14a5802655438cb75/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
@@ -88,6 +89,8 @@ uses-sdk
 INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/legion/Work/Flutter/vishal_mega_mart/android/app/src/main/AndroidManifest.xml
+MERGED from [:shared_preferences_android] /home/legion/Work/Flutter/vishal_mega_mart/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /home/legion/Work/Flutter/vishal_mega_mart/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] /home/legion/Work/Flutter/vishal_mega_mart/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] /home/legion/Work/Flutter/vishal_mega_mart/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] /home/legion/Work/Flutter/vishal_mega_mart/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41

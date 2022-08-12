@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' show Client;
 import 'package:vishal_mega_mart_app/screens/constant.dart';
 import 'package:vishal_mega_mart_app/screens/model/lastmodel.dart';
+import 'package:vishal_mega_mart_app/screens/sharedpref.dart';
 import '../model/category_section.dart';
 
 class LatProvider {
@@ -10,7 +11,11 @@ class LatProvider {
   Future<LastModel> getlastapi() async {
     const url =
        "https://www.vishalmegamart.com/s/-/dw/data/v20_10/catalogs/vmm-storefront-catalog/categories/1003001";
-    const token =tokens.TOKEN;
+  final mytoken = await appPreferences.getStringPreference("my_token");
+    String token = mytoken;
+    print("===TOKEN IN API=========");
+
+    print("===TOKEN IN API=====${token}====");
     var response = await client.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

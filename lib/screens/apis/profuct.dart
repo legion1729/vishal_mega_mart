@@ -4,18 +4,23 @@ import 'package:http/http.dart' as http;
 import 'package:vishal_mega_mart_app/screens/constant.dart';
 import 'package:vishal_mega_mart_app/screens/home.dart';
 import 'package:vishal_mega_mart_app/screens/model/product.dart';
+import 'package:vishal_mega_mart_app/screens/sharedpref.dart';
 
 class ProductProvider {
   //Client client = Client();
   Future<ProductModel> product() async {
     // ignore: avoid_print
     print("======= API CALLING  =========",);
-    const token = tokens.TOKEN;
+   final mytoken = await appPreferences.getStringPreference("my_token");
+    String token = mytoken;
+    print("===TOKEN IN API=========");
+
+    print("===TOKEN IN API=====${token}====");
     
     var headers = {
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiJEMWhPUDdEODN4TjBqZWlqaTI3WWFvZFRjL0E9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXVkaXRUcmFja2luZ0lkIjoiYzI3YmE4Y2QtNjVlYy00N2ZhLWIxODQtNDkwZjYwOWI2N2RkLTMzMDY0ODkiLCJzdWJuYW1lIjoiOTgwNGY4YjQtZTQzMS00OTUwLWE3NDMtYmRhMjJmMDllYmI4IiwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50LmRlbWFuZHdhcmUuY29tOjQ0My9kd3Nzby9vYXV0aDIiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiI0OEE5UlZ4dnB0d2N2TU5aQk9kbEN3M040eVUiLCJhdWQiOiI5ODA0ZjhiNC1lNDMxLTQ5NTAtYTc0My1iZGEyMmYwOWViYjgiLCJuYmYiOjE2NjAxMjc5MDYsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJzY29wZSI6WyJtYWlsIl0sImF1dGhfdGltZSI6MTY2MDEyNzkwNiwicmVhbG0iOiIvIiwiZXhwIjoxNjYwMTI5NzA2LCJpYXQiOjE2NjAxMjc5MDYsImV4cGlyZXNfaW4iOjE4MDAsImp0aSI6IlctM2JFUFdsdHVET2p3ekRoR2dBVEp1bFpLTSIsImNsaWVudF9pZCI6Ijk4MDRmOGI0LWU0MzEtNDk1MC1hNzQzLWJkYTIyZjA5ZWJiOCJ9.E5lvd1ikAZll0iTC0-tI7gGBBDL_MP24gQtF1m28Fuzv6YXz0ri7HLg3kR8QeZocJGEuJ9kiKhrkzXusVA7Xyu9wfKAk3YXObpYx3yTAIvIT5IA-PC0f5TLpBORtUIqjm6jKSC-MUR6DWUXtupKe3EYgE6LW1yhH8zWzkNnSKtgBYyy-E1fY6LmmfhSqT3tzytzaxkSR0AXrqY-4Kkjcu5Q1TS28ywsDeN0Ysw8v4UwSAVmyHBt82T4Re-IUfrq2kSHas9bcpQf1rHRklpsmy7kqItDazx49BZIP7AS9Hxo5wdiN7wE4OAqn4-444y6T7_mZ3RziskIyL8V6HpNmng',
+          'Bearer token',
           
           
     };
@@ -41,7 +46,7 @@ class ProductProvider {
     http.StreamedResponse response = await request.send();
 
     final res = await response.stream.bytesToString();
- print("=======Product====== ${res}");
+   print("=======Product====== ${res}");
     if (response.statusCode == 200) {
       print("=======Product====== ${res}");
       // print("============= ${await response.stream.bytesToString()}");

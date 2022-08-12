@@ -6,9 +6,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:vishal_mega_mart_app/screens/apis/tokenapi.dart';
 import 'package:vishal_mega_mart_app/screens/bloc/categorybloc.dart';
 import 'package:vishal_mega_mart_app/screens/categoryss.dart';
+import 'package:vishal_mega_mart_app/screens/constant.dart';
 import 'package:vishal_mega_mart_app/screens/extra.dart';
+import 'package:vishal_mega_mart_app/screens/lastapi.dart';
+import 'package:vishal_mega_mart_app/screens/model/token.dart';
 import 'package:vishal_mega_mart_app/screens/page.dart';
 import 'package:vishal_mega_mart_app/screens/productdetailsapipage.dart';
 import 'package:vishal_mega_mart_app/screens/searchwidget.dart';
@@ -33,6 +37,48 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
+  // Future<TokenModel> Token() async {
+  //   // ignore: avoid_print
+  //   print(
+  //     "======= API CALLING  =========",
+  //   );
+  //   // const token = tokens.TOKEN;
+  //   var headers = {
+  //     'Authorization':
+  //         'Basic OTgwNGY4YjQtZTQzMS00OTUwLWE3NDMtYmRhMjJmMDllYmI4OlZNTU1vYmlsZUFwcDIwMjAj',
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //     'Cookie':
+  //         'route=1660200976.763.118.455900|b4b9366450a28a63ee5f72b7d8464f5c'
+  //   };
+
+  //   var request = http.Request('POST',
+  //       Uri.parse('https://account.demandware.com/dwsso/oauth2/access_token'));
+  //   request.bodyFields = {'grant_type': 'client_credentials'};
+  //   request.headers.addAll(headers);
+
+  //   http.StreamedResponse response = await request.send();
+  //   final res = await response.stream.bytesToString();
+  //   Map valueMap = json.decode(res);
+  //   // print("=== VALUE MAP ==========");
+  //   // print("=== VALUE MAP ===== ${valueMap}=====");
+
+  //   dynamic Token = valueMap.remove('access_token');
+  //   print('Value popped from the Map ${Token}');
+  //   // tokens.TOKEN =Token;
+  //   TokenValue.mytoken = Token;
+  //   print("+++++7777777+++++${TokenValue.mytoken}+++++++++++++");
+
+  //   if (response.statusCode == 200) {
+  //     print("=======Product====== ${res}");
+  //     print(await response.stream.bytesToString());
+  //   } else {
+  //     print(response.reasonPhrase);
+  //     // print("======= Failed to load posts =========");
+  //   }
+
+  //   return TokenModel.fromJson(jsonDecode(res));
+  // }
+
   void text() {
     Searchtext.searchelemnt = myController.text;
     print("++++++++++${myController.text}+++++++++++++");
@@ -44,6 +90,8 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     text();
+
+    // Token();
   }
 
   var category = [
@@ -97,8 +145,7 @@ class _HomeState extends State<Home> {
                                 Text(
                                   "Noida Sector 1",
                                   style: GoogleFonts.poppins(
-                                      color: AppTheme.whitColor,
-                                      fontSize: 17),
+                                      color: AppTheme.whitColor, fontSize: 17),
                                 ),
                               ],
                             ),
@@ -142,7 +189,7 @@ class _HomeState extends State<Home> {
 
                     textInputAction: TextInputAction.next,
                     style: GoogleFonts.poppins(
-                      fontSize: AppFonts.subtitle1,
+                      fontSize: 15,
                       fontWeight: FontWeight.w400,
                       letterSpacing: .5,
                     ),
@@ -184,7 +231,7 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Shop by category",
-                 style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
               const SizedBox(height: 10),
@@ -303,3 +350,7 @@ class _HomeState extends State<Home> {
 class Searchtext {
   static var searchelemnt;
 }
+
+// class TokenValue {
+//   static var mytoken;
+// }
