@@ -25,7 +25,7 @@ class SubCat extends StatelessWidget {
                   )
                 : Image.asset("assets/p.jpeg"),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -34,9 +34,9 @@ class SubCat extends StatelessWidget {
                 ),
               );
             },
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(80.0)),
-            padding: EdgeInsets.all(0.0),
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(80.0)),
+            // padding: EdgeInsets.all(0.0),
             child: Ink(
               decoration: BoxDecoration(
                   gradient: const LinearGradient(

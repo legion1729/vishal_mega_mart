@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/legion/Work/Flutter/vishal_mega_mart/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
+            "outputFile": "/home/legion/Desktop/vishal_mega_mart/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
             "map": [
                 {
                     "source": "/home/legion/.gradle/caches/transforms-3/4ef803ba34d31dcf48df123a27eb5d76/transformed/jetified-play-services-basement-17.0.0/res/values-sl/values.xml",
